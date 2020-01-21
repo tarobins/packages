@@ -1034,7 +1034,7 @@ class _Count {
   int value = 0;
 }
 
-int hashColorComponent(int component) => hashValues(component, 0);
+int hashColorComponent(int component) => component.hashCode;
 
 class _ColorHistogram {
   final Map<int, Map<int, Map<int, _Count>>> _hist = LinkedHashMap<int, Map<int, Map<int, _Count>>>(hashCode: hashColorComponent);
