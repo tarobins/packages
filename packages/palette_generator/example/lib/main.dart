@@ -79,12 +79,16 @@ class _ImageColorsState extends State<ImageColors> {
   }
 
   Future<void> _updatePaletteGenerator(Rect newRegion) async {
+    DateTime start = DateTime.now();
     paletteGenerator = await PaletteGenerator.fromImageProvider(
       widget.image,
       size: widget.imageSize,
       region: newRegion,
       maximumColorCount: 20,
     );
+    DateTime end = DateTime.now();
+    Duration timing = end.difference(start);
+    print('Palette Generation took: $timing');
     setState(() {});
   }
 
