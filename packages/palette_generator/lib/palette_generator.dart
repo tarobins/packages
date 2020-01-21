@@ -1134,7 +1134,8 @@ class _ColorCutQuantizer {
     _getImagePixels(imageData, image.width, image.height, region: region);
     log.info('Start histogram creation');
 
-    final Map<Color, _Count> hist = <Color, _Count>{};
+    final Map<Color, _Count> hist = LinkedHashMap<Color, _Count>(
+        hashCode: (color) => hashValues(color.value.hashCode, 0));
     Color previousColor;
     _Count count;
     for (Color pixel in pixels) {
