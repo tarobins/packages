@@ -18,5 +18,6 @@ flutter:
   uses-material-design: true
   assets:
    - assets/landscape.png
+   - assets/obama.png
 
 
