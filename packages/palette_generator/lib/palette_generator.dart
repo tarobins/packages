@@ -1034,8 +1034,10 @@ class _Count {
   int value = 0;
 }
 
+int hashColorComponent(int component) => hashValues(component, 0);
+
 class _ColorHistogram {
-  final Map<int, Map<int, Map<int, _Count>>> _hist = LinkedHashMap<int, Map<int, Map<int, _Count>>>(hashCode: (key) => hashValues(key, 0));
+  final Map<int, Map<int, Map<int, _Count>>> _hist = LinkedHashMap<int, Map<int, Map<int, _Count>>>(hashCode: hashColorComponent);
   final DoubleLinkedQueue<Color> _keys = DoubleLinkedQueue<Color>();
 
   _Count operator[](Color color) {
@@ -1059,13 +1061,13 @@ class _ColorHistogram {
 
     Map<int, Map<int, _Count>> redMap = _hist[red];
     if (redMap == null) {
-      _hist[red] = redMap = LinkedHashMap<int, Map<int, _Count>>(hashCode: (key) => hashValues(key, 0));
+      _hist[red] = redMap = LinkedHashMap<int, Map<int, _Count>>(hashCode: hashColorComponent);
       newColor = true;
     }
 
     Map<int, _Count> blueMap = redMap[blue];
     if (blueMap == null) {
-      redMap[blue] = blueMap = LinkedHashMap<int, _Count>(hashCode: (key) => hashValues(key, 0));
+      redMap[blue] = blueMap = LinkedHashMap<int, _Count>(hashCode: hashColorComponent);
       newColor = true;
     }
 
